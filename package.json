@@ -4,18 +4,23 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "api:dev": "nodemon src/server.ts",
+    "build": "tsc --build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bullmq": "^1.78.2",
     "express": "^4.17.3",
+    "helmet": "^5.0.2",
     "nodemon": "^2.0.15",
     "ts-node": "^10.7.0",
     "typescript": "^4.6.3"
   },
   "devDependencies": {
+    "@types/body-parser": "^1.19.2",
     "@types/express": "^4.17.13",
     "@types/jest": "^27.4.1",
     "eslint": "^8.12.0",
