@@ -15,3 +15,6 @@ jspm_packages/
 
 # build folder
 dist
+
+# environment variables file
+.env
