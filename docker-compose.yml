@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  api:
+    build: ./
+    volumes:
+    - ./:/var/www/app
+    ports:
+      - 3000:3000
+    command: sh -c 'npm i && npm run start:api'
+    networks:
+      - backend
+  redis:
+    image: redis
+    container_name: message-broker
+    expose:
+      - 6379
+    networks:
+      - backend
+networks:
+  backend:
