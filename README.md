@@ -64,6 +64,8 @@ Two common patterns that did not fit all the requirements but are typically used
 
 2. **Pub/Sub** - Also used for decoupling and may other use-cases. Uses a queue but messages typically are sent to one or more clients that are subscribed to a channel or topic and are not sent in any order. It did not satisfy the "This means that when a consumer reads a message, the system will guarantee that no other consumers read the message. Think about reliability especially in this case" (a difficult problem to solve in pub/sub). Pub/Sub typically guarantees that each subscribed client / consumer should receive the message at most once. 
 
+BullMQ already handles the "At-most-once delivery". Once a job is selected, it status changes to active and so no other consumer can get / read that job. 
+
 ## Dependencies
 1. "axios": "^0.26.1" - to make http requests
 
