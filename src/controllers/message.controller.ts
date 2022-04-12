@@ -12,7 +12,8 @@ export const sendMessage = (req: Request, res: Response): Response<any, Record<s
 
         // make sure the client submitted a payload attribute
         if (!data?.payload) {
-            createResponse(400, {}, { message: 'Missing payload attribute.' });
+            const response = createResponse(400, {}, { message: 'Missing payload attribute.' });
+            return res.status(400).json(response);
         }
 
         // asynchronously add payload to queue
@@ -31,10 +32,13 @@ export const readMessage = async (req: Request, res: Response): Promise<Response
     try {
         const token = uuid4();
         const job = (await messageBrokerWorker.getNextJob(token)) as Job;
-        const data = job?.data || {};
-        const payload = { data };
+        let data;
+        if (job?.data) {
+            data = job.data;
+            data.id = job.id;
+        }
 
-        const response = createResponse(200, payload, {});
+        const response = createResponse(200, data, {});
         return res.status(200).json(response);
     } catch (error) {
         const errorResult = createResponse(500, {}, { message: 'Something went wrong.' });
