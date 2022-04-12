@@ -3,7 +3,6 @@
     "singleQuote": true,
     "trailingComma": "none",
     "jsxBracketSameLine": false,
-    "parser": "typescript",
     "tabWidth": 4,
     "printWidth": 120
 }
